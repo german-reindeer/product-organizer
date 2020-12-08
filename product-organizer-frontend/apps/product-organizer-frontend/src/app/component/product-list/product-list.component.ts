@@ -9,7 +9,7 @@ import { ProductQuery } from '../../state/product.query';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-  displayedColumns: string[] = ['edit', 'title', 'name', 'description'];
+  displayedColumns: string[] = ['edit', 'name', 'title', 'description'];
   products$: Observable<Product[]>;
 
   constructor(productQuery: ProductQuery) {

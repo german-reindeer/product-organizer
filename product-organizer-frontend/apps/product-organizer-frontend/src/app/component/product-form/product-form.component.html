@@ -15,5 +15,5 @@
 </form>
 <div fxLayout="row" fxLayoutGap="8px">
   <button mat-raised-button routerLink="/">Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="!productForm.valid">Save</button>
+  <button mat-raised-button color="primary" [disabled]="!productForm.valid" (click)="submit()">Save</button>
 </div>

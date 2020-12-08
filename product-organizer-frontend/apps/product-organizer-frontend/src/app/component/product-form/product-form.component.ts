@@ -29,7 +29,8 @@ export class ProductFormComponent {
         take(1),
         filter((route) => route === ProductOrganizerRoute.EDIT),
         map(() => this.activateRoute.snapshot.paramMap.get('id')),
-        mergeMap((id) => this.productQuery.selectEntity(Number(id)))
+        mergeMap((id) => this.productQuery.selectEntity(Number(id))),
+        filter((product) => !!product)
       )
       .subscribe((product) => this.productForm.patchValue(product));
   }
@@ -47,6 +48,7 @@ export class ProductFormComponent {
       name: ['', Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
+      id: [''],
     });
   }
 }
