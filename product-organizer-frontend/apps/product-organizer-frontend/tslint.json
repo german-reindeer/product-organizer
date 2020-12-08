@@ -4,13 +4,11 @@
     "directive-selector": [
       true,
       "attribute",
-      "productOrganizerFrontend",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "product-organizer-frontend",
       "kebab-case"
     ]
   },

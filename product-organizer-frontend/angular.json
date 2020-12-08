@@ -10,7 +10,7 @@
       },
       "root": "apps/product-organizer-frontend",
       "sourceRoot": "apps/product-organizer-frontend/src",
-      "prefix": "product-organizer-frontend",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -25,7 +25,10 @@
               "apps/product-organizer-frontend/src/favicon.ico",
               "apps/product-organizer-frontend/src/assets"
             ],
-            "styles": ["apps/product-organizer-frontend/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/product-organizer-frontend/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

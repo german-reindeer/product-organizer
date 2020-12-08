@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+$margin-sm: 8px;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+
+// Global styles
+
+.margin-left-sm {
+  margin-left: $margin-sm;
+}
+
+.margin-right-sm {
+  margin-right: $margin-sm;
+}
