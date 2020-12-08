@@ -1,7 +1,12 @@
 <mat-toolbar color="primary">
   <span>Product Organizer</span>
   <span class="toolbar-spacer"></span>
-  <button mat-button fxLayout="row" *ngIf="(currentRoute$ | async) === ROUTES.LIST; else backToList" routerLink="/create">
+  <button
+    mat-button
+    fxLayout="row"
+    *ngIf="(currentRoute$ | async) === ROUTES.LIST; else backToList"
+    routerLink="/create"
+  >
     <mat-icon class="margin-right-sm">add</mat-icon>
     <span>Create product</span>
   </button>
