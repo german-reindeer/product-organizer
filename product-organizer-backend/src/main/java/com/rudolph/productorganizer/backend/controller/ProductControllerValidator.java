@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductControllerValidator {
 
-    public boolean isValidUpdateProductRequest(Product product, long id) {
-        return product.getId() == id;
+    public void validateUpdateProductRequest(Product product, long id) {
+        if (product.getId() != id) {
+            throw new ProductValidationException();
+        }
     }
 }

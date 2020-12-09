@@ -37,12 +37,9 @@ public class ProductController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> updateProduct(@Valid @RequestBody Product product, @PathVariable long id) {
-        if (validator.isValidUpdateProductRequest(product, id)) {
-            return new ResponseEntity<>(repository.save(product), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public Product updateProduct(@Valid @RequestBody Product product, @PathVariable long id) {
+        validator.validateUpdateProductRequest(product, id);
+        return repository.save(product);
     }
 
 

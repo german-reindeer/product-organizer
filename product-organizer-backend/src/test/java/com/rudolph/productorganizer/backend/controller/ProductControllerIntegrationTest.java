@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -67,7 +68,6 @@ class ProductControllerIntegrationTest {
         // given
         Product product = createProduct();
         given(repository.save(product)).willReturn(product);
-        given(validator.isValidUpdateProductRequest(product, product.getId())).willReturn(true);
 
         // when / then
         mvc.perform(put(PRODUCTS_PATH + "/" + product.getId())
@@ -80,7 +80,7 @@ class ProductControllerIntegrationTest {
     void updateProduct_shouldReturnBadRequest_forValidationError() throws Exception {
         // given
         Product product = createProduct();
-        given(validator.isValidUpdateProductRequest(product, product.getId())).willReturn(false);
+        doThrow(ProductValidationException.class).when(validator).validateUpdateProductRequest(product, product.getId());
 
         // when / then
         mvc.perform(put(PRODUCTS_PATH + "/" + product.getId())
