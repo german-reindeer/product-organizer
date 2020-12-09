@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppRoutingService } from '../../routing/app-routing.service';
 import { ProductOrganizerRoute } from '../../routing/product-organizer-route.enum';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, mergeMap, take } from 'rxjs/operators';
 import { ProductQuery } from '../../state/product.query';
 import { ProductService } from '../../state/product.service';
@@ -20,7 +20,8 @@ export class ProductFormComponent {
     private productService: ProductService,
     private appRoutingService: AppRoutingService,
     private formBuilder: FormBuilder,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.buildForm();
     appRoutingService
@@ -37,10 +38,14 @@ export class ProductFormComponent {
 
   submit(): void {
     if (this.appRoutingService.getCurrentRoute() === ProductOrganizerRoute.EDIT) {
-      this.productService.updateProduct(this.productForm.value);
+      this.productService.updateProduct(this.productForm.value, this.routeToDashoard());
     } else {
-      this.productService.createProduct(this.productForm.value);
+      this.productService.createProduct(this.productForm.value, this.routeToDashoard());
     }
+  }
+
+  private routeToDashoard() {
+    return () => this.router.navigate(['/']);
   }
 
   private buildForm(): void {

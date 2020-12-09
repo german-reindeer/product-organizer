@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { ActivatedRoute, ActivationEnd, Router, RouterEvent, UrlSegment } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ProductOrganizerRoute } from './product-organizer-route.enum';
 
 @Injectable({
@@ -33,12 +33,12 @@ export class AppRoutingService implements OnDestroy {
       const url = this.router.url;
       if (url.includes(ProductOrganizerRoute.LIST)) {
         this.setCurrentRouter(ProductOrganizerRoute.LIST);
-      }
-      if (url.includes(ProductOrganizerRoute.CREATE)) {
+      } else if (url.includes(ProductOrganizerRoute.CREATE)) {
         this.setCurrentRouter(ProductOrganizerRoute.CREATE);
-      }
-      if (url.includes(ProductOrganizerRoute.EDIT)) {
+      } else if (url.includes(ProductOrganizerRoute.EDIT)) {
         this.setCurrentRouter(ProductOrganizerRoute.EDIT);
+      } else {
+        this.setCurrentRouter(ProductOrganizerRoute.UNKNOWN);
       }
     });
   }

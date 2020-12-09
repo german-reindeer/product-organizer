@@ -1,15 +1,24 @@
 <mat-toolbar color="primary">
   <span>Product Organizer</span>
   <span class="toolbar-spacer"></span>
-  <button
-    mat-button
-    fxLayout="row"
-    *ngIf="(currentRoute$ | async) === ROUTES.LIST; else backToList"
-    routerLink="/create"
-  >
-    <mat-icon class="margin-right-sm">add</mat-icon>
-    <span>Create product</span>
-  </button>
+  <div fxLayout="row" *ngIf="(currentRoute$ | async) === ROUTES.LIST; else backToList">
+    <button
+      mat-button
+      fxLayout="row"
+      (click)="refreshList()"
+    >
+      <mat-icon class="margin-right-sm">refresh</mat-icon>
+      <span>Refresh product list</span>
+    </button>
+    <button
+      mat-button
+      fxLayout="row"
+      routerLink="/create"
+    >
+      <mat-icon class="margin-right-sm">add</mat-icon>
+      <span>Create product</span>
+    </button>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
 

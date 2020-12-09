@@ -13,8 +13,12 @@ export class AppComponent {
   readonly ROUTES = ProductOrganizerRoute;
   currentRoute$: Observable<ProductOrganizerRoute>;
 
-  constructor(appRoutingService: AppRoutingService, productService: ProductService) {
+  constructor(appRoutingService: AppRoutingService, private productService: ProductService) {
     this.currentRoute$ = appRoutingService.selectCurrentRoute();
     productService.fetchAll();
+  }
+
+  refreshList(): void {
+    this.productService.fetchAll();
   }
 }

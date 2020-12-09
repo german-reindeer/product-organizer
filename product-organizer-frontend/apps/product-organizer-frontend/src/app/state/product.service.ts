@@ -3,41 +3,39 @@ import { ProductStore } from './product.store';
 import { ProductHttpService } from './product-http.service';
 import { take } from 'rxjs/operators';
 import { Product } from '../model/product';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private store: ProductStore, private httpService: ProductHttpService, private router: Router) {}
+  constructor(private store: ProductStore, private httpService: ProductHttpService) {}
 
   fetchAll(): void {
     this.httpService
       .getProducts()
       .pipe(take(1))
       .subscribe((products) => {
-        this.store.reset();
-        this.store.add(products);
+        this.store.upsertMany(products);
       });
   }
 
-  createProduct(product: Product): void {
+  createProduct(product: Product, onSuccess): void {
     this.httpService
       .postProduct(product)
       .pipe(take(1))
-      .subscribe(() => this.routeToList());
+      .subscribe((createdProduct) => {
+        this.store.add(createdProduct);
+        onSuccess();
+      });
   }
 
-  updateProduct(product: Product): void {
+  updateProduct(product: Product, onSuccess): void {
     this.httpService
       .putProduct(product)
       .pipe(take(1))
-      .subscribe(() => this.routeToList());
-  }
-
-  private routeToList(): void {
-    this.router.navigate(['/']).then(() => {
-      this.fetchAll();
-    });
+      .subscribe((updatedProduct) => {
+        this.store.upsert(updatedProduct.id, updatedProduct);
+        onSuccess();
+      });
   }
 }
