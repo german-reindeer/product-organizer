@@ -22,7 +22,7 @@ java -jar product-organizer-backend-0.0.1.jar
 The frontend is a simple browser application built with Angular
 
 ### Build & Run
-As a prerequisite npm has to be installed on your local machine.
+As a prerequisite npm and angular have to be installed on your local machine (find instructions [here](https://angular.io/guide/setup-local)).
 If this is done, you can install the Angular project.
 ```
 cd product-organizer-frontend
