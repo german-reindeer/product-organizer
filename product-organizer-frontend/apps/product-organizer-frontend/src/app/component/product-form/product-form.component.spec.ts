@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductFormComponent } from './product-form.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductFormComponent', () => {
   let component: ProductFormComponent;
@@ -9,6 +13,8 @@ describe('ProductFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProductFormComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [RouterTestingModule, ReactiveFormsModule, HttpClientTestingModule],
     }).compileComponents();
   });
 

@@ -6,7 +6,7 @@ Start with the backend and then continue with the frontend.
 ## Backend
 The backend is Spring microservice with an H2 in-memory database
 
-## Build & Run
+### Build & Run
 First you will need to build the microservice running following commands
 ```
 cd product-organizer-backend
